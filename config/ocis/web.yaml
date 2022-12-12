@@ -1,0 +1,24 @@
+web:
+  config:
+    apps:
+    - files
+    - search
+    - preview
+    - text-editor
+    - pdf-viewer
+    - external
+    - user-management
+    external_apps: [
+      {
+        "id": "draw-io",
+        "path": "web-app-draw-io",
+        "config": {
+          "url": "https://drawio.data.surfsara.nl",
+          "autosave": false,
+          "theme": "minimal"
+        }
+      }
+    ]
+    options:
+      hideSearchBar: false
+

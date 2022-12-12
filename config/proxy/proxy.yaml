@@ -1,0 +1,125 @@
+
+policies:
+- name: ocis
+  routes:
+  - endpoint: /
+    backend: http://web:9100
+    service: com.owncloud.web.web
+    unprotected: true
+#  - endpoint: /.well-known/
+#    backend: http://idp:9130
+#    service: com.owncloud.web.idp
+#    unprotected: true
+#  - endpoint: /signin/
+#    backend: http://idp:9130
+#    service: com.owncloud.web.idp
+#    unprotected: true
+  - endpoint: /archiver
+    backend: http://frontend:9140
+    service: com.owncloud.web.frontend
+    unprotected: true
+  - type: regex
+    endpoint: /ocs/v[12].php/cloud/user/signing-key
+    service: com.owncloud.web.ocs
+    backend: http://ocs:9110
+    unprotected: true
+  - type: regex
+    endpoint: /ocs/v[12].php/config
+    service: com.owncloud.web.frontend
+    backend: http://frontend:9140
+    unprotected: true
+  - endpoint: /ocs/
+    service: com.owncloud.web.frontend
+  - type: query
+    endpoint: /remote.php/?preview=1
+    backend: http://webdav:9115
+    service: com.owncloud.web.webdav
+  - method: REPORT
+    endpoint: /remote.php/dav/
+    backend: http://webdav:9115
+    service: com.owncloud.web.webdav
+  - method: REPORT
+    endpoint: /remote.php/webdav
+    backend: http://webdav:9115
+    service: com.owncloud.web.webdav
+  - method: REPORT
+    endpoint: /dav/spaces
+    backend: http://webdav:9115
+    service: com.owncloud.web.webdav
+  - type: query
+    endpoint: /dav/?preview=1
+    backend: http://webdav:9115
+    service: com.owncloud.web.webdav
+  - type: query
+    endpoint: /webdav/?preview=1
+    backend: http://webdav:9115
+    service: com.owncloud.web.webdav
+  - endpoint: /remote.php/
+    service: com.owncloud.web.ocdav
+  - endpoint: /dav/
+    service: com.owncloud.web.ocdav
+  - endpoint: /webdav/
+    service: com.owncloud.web.ocdav
+  - endpoint: /status
+    service: com.owncloud.web.ocdav
+    unprotected: true
+  - endpoint: /status.php
+    service: com.owncloud.web.ocdav
+    unprotected: true
+  - endpoint: /index.php/
+    service: com.owncloud.web.ocdav
+  - endpoint: /apps/
+    service: com.owncloud.web.ocdav
+  - endpoint: /data
+    service: com.owncloud.web.frontend
+    unprotected: true
+  - endpoint: /app/list
+    service: com.owncloud.web.frontend
+    unprotected: true
+  - endpoint: /app/
+    service: com.owncloud.web.frontend
+  - endpoint: /graph/
+    service: com.owncloud.graph.graph
+  - endpoint: /api/v0/settings
+    service: com.owncloud.web.settings
+  - endpoint: /settings.js
+    service: com.owncloud.web.settings
+    unprotected: true          
+  - endpoint: /themes
+    backend: http://theming:80
+    unprotected: true
+oidc:
+  issuer: https://keycloak-ocis-test.data.surfsara.nl
+  insecure: false
+  access_token_verify_method: jwt
+  user_info_cache:
+    size: 1024
+    ttl: 10
+  jwks:
+    refresh_interval: 60
+    refresh_timeout: 10
+    refresh_limit: 60
+    refresh_unknown_kid: true
+  rewrite_well_known: false
+token_manager:
+  jwt_secret: ""
+policy_selector:
+  static:
+    policy: ocis
+  claims: null
+  regex: null
+pre_signed_url:
+  allowed_http_methods:
+  - GET
+  enabled: true
+account_backend: cs3
+user_oidc_claim: preferred_username
+user_cs3_claim: username
+machine_auth_api_key: ""
+auto_provision_accounts: false
+enable_basic_auth: false
+insecure_backends: false
+backend_https_cacert: ""
+auth_middleware:
+  credentials_by_user_agent: {}
+

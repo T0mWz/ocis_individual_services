@@ -1,0 +1,64 @@
+{
+  "default": {
+    "general": {
+      "name": "Dark Cloud",
+      "slogan": "A safe home for all your data"
+    },
+    "logo": {
+      "topbar": "https://wezepoel.net/ocis/logo.png",
+      "favicon": "https://wezepoel.net/ocis/favicon.png",
+      "login": "https://wezepoel.net/ocis/logo.png"
+    },
+    "loginPage": {
+      "autoRedirect": true,
+      "backgroundImg": "https://wezepoel.net/ocis/background.jpg"
+    },
+    "designTokens": {
+      "breakpoints": {},
+      "colorPalette": {
+        "background-default": "#fff",
+        "background-highlight": "#faf6ed",
+        "background-muted": "#f8f8f8",
+        "border": "#eeedeb",
+        "input-bg": "#eeeeee",
+        "input-border": "#eee8ce",
+        "input-text-default": "#006C34",
+        "input-text-muted": "#666666",
+        "swatch-brand-default": "#006C34",
+        "swatch-brand-hover": "#593f22",
+        "swatch-danger-default": "#e00000",
+        "swatch-danger-hover": "#e96464",
+        "swatch-danger-muted": "#b50000",
+        "swatch-inverse-default": "#fff",
+        "swatch-inverse-hover": "#fff",
+        "swatch-inverse-muted": "#bfbfbf",
+        "swatch-passive-default": "#006C34",
+        "swatch-passive-hover": "#b1ac97",
+        "swatch-passive-muted": "#5d4628",
+        "swatch-primary-default": "#9c9c9c",
+        "swatch-primary-hover": "#c7c7c7",
+        "swatch-primary-muted": "#555555",
+        "swatch-success-default": "#4f822f",
+        "swatch-success-hover": "#93e054",
+        "swatch-success-muted": "#53960a",
+        "swatch-warning-default": "#c6501b",
+        "swatch-warning-hover": "#fda94b",
+        "swatch-warning-muted": "#b35100",
+        "text-default": "#333333",
+        "text-inverse": "#fff",
+        "text-muted": "#666666"
+      },
+      "fontSizes": {
+        "default": "",
+        "large": "",
+        "medium": ""
+      },
+      "sizes": {
+        "max-height-logo": "200px",
+        "max-width-logo": "200px"
+       },
+      "spacing": {
+      }
+    }
+  }
+}
