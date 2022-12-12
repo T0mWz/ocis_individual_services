@@ -1,0 +1,112 @@
+# If you're on a internet facing server please comment out following line.
+# It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.
+INSECURE=true
+
+# The demo users should not be created on a production instance
+# because their passwords are public
+DEMO_USERS=false
+
+### Traefik settings ###
+# Serve Traefik dashboard.
+TRAEFIK_DASHBOARD=false
+# Domain of Traefik, where you can find the dashboard.
+TRAEFIK_DOMAIN=
+# Basic authentication for the dashboard.
+TRAEFIK_BASIC_AUTH_USERS=admin
+# Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server
+TRAEFIK_ACME_MAIL=
+TRAEFIK_LOG_LEVEL=DEBUG
+
+### oCIS settings ###
+# oCIS version.
+OCIS_DOCKER_TAG=2.0.0
+# Domain of oCIS, where you can find the frontend.
+OCIS_DOMAIN=ocis.example.com
+# IDP LDAP bind password. Must be changed in order to have a secure oCIS. Must be identical to IDP_IDPSVC_PASSWORD
+IDP_LDAP_BIND_PASSWORD=277b3d8d77bf519104ce3a38530ec4bf
+# Storage LDAP bind password. Must be changed in order to have a secure oCIS.
+STORAGE_LDAP_BIND_PASSWORD=29f94ff57e67cc3714a57de7940464c8
+# JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS.
+OCIS_JWT_SECRET=d08853f6e0434296a420d8c3e6d8a355
+# Secret which is used for uploads to create transfer tokens. Must be changed in order to have a secure oCIS.
+STORAGE_TRANSFER_SECRET=440850c5e12c648dde69a14c8296734b
+# Secret which is used for accessing the system storage. Must be different from the OCIS_JWT_SECRET. Must be changed in order to have a secure oCIS.
+STORAGE_SYSTEM_JWT_SECRET=277b3d8d77bf519104ce3a38530ec4bf
+# Machine auth api key secret. Must be changed in order to have a secure oCIS.
+OCIS_MACHINE_AUTH_API_KEY=6d5453634c1d2b46b18a071365e4c98d
+# OCIS User Storage Mount ID, must be a random uuidv4,  set GATEWAY_STORAGE_USERS_MOUNT_ID and STORAGE_USERS_MOUNT_ID to the same value.
+OCIS_USERS_STORAGE_MOUNT_ID=b0533786-ed25-4f9d-a93e-d497ff65025c
+
+# oCIS registry
+OCIS_MICRO_REGISTRY: nats
+OCIS_MICRO_REGISTRY_ADDRESS: nats:9233
+
+# System user machine auth api key. Must be changed in order to have a secure oCIS.
+SYSTEM_USER_API_KEY=838a2a94407da40afb36011956fc281b
+# Number of services to run for extensions, that currently can be easily scaled.
+OCIS_SCALE=1
+
+OCIS_LOG_LEVEL=DEBUG
+
+# IDM service user password, set to a random string.
+IDM_SVC_PASSWORD=ReallyS3cr3t!
+# IDM Reva service user password, set to a random string.
+IDM_REVASVC_PASSWORD=ReallyS3cr3t!
+# IDM IDP service user password, set to a random string.
+IDM_IDPSVC_PASSWORD=ReallyS3cr3t!
+# System user id, set to a random string.
+SYSTEM_USER_ID=5a792876-ee46-41c6-b4b8-c67b767b3558
+# Admin user id, set to a random UUIDv4.
+ADMIN_USER_ID=00ba36ef-39a5-4bd5-a6eb-7ca230664c35
+# Admin user password, set to random string.
+ADMIN_USER_PASSWORD=ReallyS3cr3t!
+# Enable basic auth for proxy, set to bool.
+PROXY_ENABLE_BASIC_AUTH=true
+
+# Enable autoprovision accounts what's required for keycloak
+PROXY_AUTOPROVISION_ACCOUNTS=true
+
+### Wopi server settings ###
+# cs3org wopi server version. Defaults to "latest"
+WOPISERVER_DOCKER_TAG=latest
+# cs3org wopi server domain. Defaults to "wopiserver.owncloud.test"
+WOPISERVER_DOMAIN=wopi.example.com
+# JWT secret which is used for the documents to be request by the Wopi client from the cs3org Wopi server. Must be change in order to have a secure Wopi server. Defaults to "LoremIpsum567"
+WOPI_JWT_SECRET=d08853f6e0434296a420d8c3e6d8a355
+# JWT secret which is used for the documents to be request by the Wopi client from the cs3org Wopi server. Must be change in order to have a secure Wopi server. Defaults to "LoremIpsum123"
+WOPI_IOP_SECRET=6b5bd4551ad59595fc67d95309484ad7
+WOPI_REVA_GATEWAY=gateway
+
+### Collabora settings ###
+# Domain of Collabora, where you can find the frontend. Defaults to "collabora.owncloud.test"
+COLLABORA_DOMAIN=collabora.example.com
+# Admin user for Collabora. Defaults to blank, provide one to enable access
+COLLABORA_ADMIN_USER=admin
+# Admin password for Collabora. Defaults to blank, provide one to enable access
+COLLABORA_ADMIN_PASSWORD=ReallyS3cr3t!
+
+### Our Nginx webserver which contains the OCIS theming ###
+## OCIS will search for themes/owncloud/theme.json for the theming
+## We have add an extra proxy entry /themes to an own nginx webserver with this json file
+## Make sure this path is added to the "unauthenticated" routes of the proxy. 
+THEMING_DOMAIN=ocis.example.com
+
+### OnlyOffice settings ###
+# Domain of OnlyOffice, where you can find the frontend. Defaults to "onlyoffice.owncloud.test"
+ONLYOFFICE_DOMAIN=onlyoffice.example.com
+
+### Keycloak settings ###
+KEYCLOAK_DOMAIN=keycloak.example.com
+KEYCLOAK_REALM=owncloud
+KEYCLOAK_ADMIN_USER=admin
+KEYCLOAK_ADMIN_PASSWORD=ReallyS3cr3t!
+
+### LDAP settings ###
+LDAP_ADMIN_PASSWORD=ReallyS3cr3t!
+LDAP_READONLY_PASSWORD=OtherReallyS3cr3t!
+LDAP_MANAGER_DOMAIN=ldap.example.com
+
+# If you want to use debugging and tracing with this stack,
+# you need uncomment following line. Please see documentation at
+# https://owncloud.dev/ocis/deployment/monitoring-tracing/
+#COMPOSE_FILE=docker-compose.yml:monitoring_tracing/docker-compose-additions.yml
